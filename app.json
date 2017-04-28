@@ -1,0 +1,32 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+    "tabBar": {
+    "selectedColor": "#cc0000",
+    "backgroundColor":"#f7f7fa",
+    "list": [
+     
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "assets/images/icon-news.jpg",
+        "selectedIconPath": "assets/images/icon-news-selected.jpg",
+        "text": "杂志"
+      },
+       {
+        "pagePath": "pages/index/index",
+        "iconPath": "assets/images/icon-technique.jpg",
+        "selectedIconPath": "assets/images/icon-technique-selected.jpg",
+        "text": "问答"
+      }
+      
+    ]
+  }
+}

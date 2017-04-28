@@ -1,0 +1,1 @@
+{"digest":"614cf4eb75c7f29259ef4dccdb014a1f20c66e0b","css":".nuclide-ui-checkbox-label {\n  margin-bottom: 0;\n}\n","imports":[{"path":"node_modules/atom-dark-ui/styles/ui-variables.less","digest":"16ff91226d75eee2b1f50109fe01fd7b9aa586c9"}],"version":1}

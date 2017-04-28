@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+
+   <view class="index-list">
+     <view class="classname">
+       <image src="http://op44q48dy.bkt.clouddn.com/zhu.jpg"></image>
+     </view>
+     <view class="title">
+       <text>养猪小能手黑猪肉50元一斤你说值不值养猪小能手黑猪肉50元一斤你说值不值？</text>
+     </view>
+     <view class="time">
+       <text>2017-04-28</text>
+     </view>
+   </view>
+
+</view>

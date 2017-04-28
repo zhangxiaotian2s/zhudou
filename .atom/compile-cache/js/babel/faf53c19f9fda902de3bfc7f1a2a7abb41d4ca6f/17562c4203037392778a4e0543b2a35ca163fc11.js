@@ -1,0 +1,87 @@
+'use babel';
+
+/*
+ * Copyright (c) 2015-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the LICENSE file in
+ * the root directory of this source tree.
+ */
+
+var _require = require('../lib/ChromeMessageRemoting');
+
+var translateMessageFromServer = _require.translateMessageFromServer;
+var translateMessageToServer = _require.translateMessageToServer;
+
+describe('debugger-hhvm ChromeMessageRemoting', function () {
+
+  it('translateMessageFromServer', function () {
+    expect(translateMessageFromServer('myhost', 8080, JSON.stringify({
+      method: 'Debugger.scriptParsed',
+      params: {
+        scriptId: '/home/test.php',
+        url: 'file:///home/test.php',
+        startLine: 0,
+        startColumn: 0,
+        endLine: 0,
+        endColumn: 0
+      }
+    }))).toBe(JSON.stringify({
+      method: 'Debugger.scriptParsed',
+      params: {
+        scriptId: '/home/test.php',
+        url: 'nuclide://myhost:8080/home/test.php',
+        startLine: 0,
+        startColumn: 0,
+        endLine: 0,
+        endColumn: 0
+      }
+    }));
+  });
+
+  it('translateMessageFromServer with space', function () {
+    expect(translateMessageFromServer('myhost', 8080, JSON.stringify({
+      method: 'Debugger.scriptParsed',
+      params: {
+        scriptId: '/home/te st.php',
+        url: 'file:///home/te st.php',
+        startLine: 0,
+        startColumn: 0,
+        endLine: 0,
+        endColumn: 0
+      }
+    }))).toBe(JSON.stringify({
+      method: 'Debugger.scriptParsed',
+      params: {
+        scriptId: '/home/te st.php',
+        url: 'nuclide://myhost:8080/home/te st.php',
+        startLine: 0,
+        startColumn: 0,
+        endLine: 0,
+        endColumn: 0
+      }
+    }));
+  });
+
+  it('translateMessageToServer', function () {
+    expect(translateMessageToServer(JSON.stringify({
+      method: 'Debugger.setBreakpointByUrl',
+      params: {
+        lineNumber: 3,
+        url: 'nuclide://myhost:8080/home/test.php',
+        columnNumber: 0,
+        condition: ''
+      }
+    }))).toBe(JSON.stringify({
+      method: 'Debugger.setBreakpointByUrl',
+      params: {
+        lineNumber: 3,
+        url: 'file:///home/test.php',
+        columnNumber: 0,
+        condition: ''
+      }
+    }));
+  });
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy96aGFuZ3hpYW90aWFuLy5hdG9tL3BhY2thZ2VzL251Y2xpZGUtZGVidWdnZXItaGh2bS9zcGVjL0Nocm9tZU1lc3NhZ2VSZW1vdGluZy1zcGVjLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLFdBQVcsQ0FBQzs7Ozs7Ozs7OztlQVltRCxPQUFPLENBQUMsOEJBQThCLENBQUM7O0lBQS9GLDBCQUEwQixZQUExQiwwQkFBMEI7SUFBRSx3QkFBd0IsWUFBeEIsd0JBQXdCOztBQUUzRCxRQUFRLENBQUMscUNBQXFDLEVBQUUsWUFBTTs7QUFFcEQsSUFBRSxDQUFDLDRCQUE0QixFQUFFLFlBQU07QUFDckMsVUFBTSxDQUFDLDBCQUEwQixDQUM3QixRQUFRLEVBQ1IsSUFBSSxFQUNKLElBQUksQ0FBQyxTQUFTLENBQUM7QUFDYixZQUFNLEVBQUUsdUJBQXVCO0FBQy9CLFlBQU0sRUFBRTtBQUNOLGdCQUFRLEVBQUUsZ0JBQWdCO0FBQzFCLFdBQUcsRUFBRSx1QkFBdUI7QUFDNUIsaUJBQVMsRUFBQyxDQUFDO0FBQ1gsbUJBQVcsRUFBQyxDQUFDO0FBQ2IsZUFBTyxFQUFDLENBQUM7QUFDVCxpQkFBUyxFQUFDLENBQUM7T0FDWjtLQUNGLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUM7QUFDdkIsWUFBTSxFQUFFLHVCQUF1QjtBQUMvQixZQUFNLEVBQUU7QUFDTixnQkFBUSxFQUFFLGdCQUFnQjtBQUMxQixXQUFHLEVBQUUscUNBQXFDO0FBQzFDLGlCQUFTLEVBQUMsQ0FBQztBQUNYLG1CQUFXLEVBQUMsQ0FBQztBQUNiLGVBQU8sRUFBQyxDQUFDO0FBQ1QsaUJBQVMsRUFBQyxDQUFDO09BQ1o7S0FDRixDQUFDLENBQUMsQ0FBQztHQUNULENBQUMsQ0FBQzs7QUFFSCxJQUFFLENBQUMsdUNBQXVDLEVBQUUsWUFBTTtBQUNoRCxVQUFNLENBQUMsMEJBQTBCLENBQzdCLFFBQVEsRUFDUixJQUFJLEVBQ0osSUFBSSxDQUFDLFNBQVMsQ0FBQztBQUNiLFlBQU0sRUFBRSx1QkFBdUI7QUFDL0IsWUFBTSxFQUFFO0FBQ04sZ0JBQVEsRUFBRSxpQkFBaUI7QUFDM0IsV0FBRyxFQUFFLHdCQUF3QjtBQUM3QixpQkFBUyxFQUFDLENBQUM7QUFDWCxtQkFBVyxFQUFDLENBQUM7QUFDYixlQUFPLEVBQUMsQ0FBQztBQUNULGlCQUFTLEVBQUMsQ0FBQztPQUNaO0tBQ0YsQ0FBQyxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQztBQUN2QixZQUFNLEVBQUUsdUJBQXVCO0FBQy9CLFlBQU0sRUFBRTtBQUNOLGdCQUFRLEVBQUUsaUJBQWlCO0FBQzNCLFdBQUcsRUFBRSxzQ0FBc0M7QUFDM0MsaUJBQVMsRUFBQyxDQUFDO0FBQ1gsbUJBQVcsRUFBQyxDQUFDO0FBQ2IsZUFBTyxFQUFDLENBQUM7QUFDVCxpQkFBUyxFQUFDLENBQUM7T0FDWjtLQUNGLENBQUMsQ0FBQyxDQUFDO0dBQ1QsQ0FBQyxDQUFDOztBQUVILElBQUUsQ0FBQywwQkFBMEIsRUFBRSxZQUFNO0FBQ25DLFVBQU0sQ0FBQyx3QkFBd0IsQ0FDM0IsSUFBSSxDQUFDLFNBQVMsQ0FBQztBQUNiLFlBQU0sRUFBRSw2QkFBNkI7QUFDckMsWUFBTSxFQUFFO0FBQ04sa0JBQVUsRUFBRSxDQUFDO0FBQ2IsV0FBRyxFQUFFLHFDQUFxQztBQUMxQyxvQkFBWSxFQUFFLENBQUM7QUFDZixpQkFBUyxFQUFFLEVBQUU7T0FDZDtLQUNGLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUM7QUFDdkIsWUFBTSxFQUFFLDZCQUE2QjtBQUNyQyxZQUFNLEVBQUU7QUFDTixrQkFBVSxFQUFFLENBQUM7QUFDYixXQUFHLEVBQUUsdUJBQXVCO0FBQzVCLG9CQUFZLEVBQUUsQ0FBQztBQUNmLGlCQUFTLEVBQUUsRUFBRTtPQUNkO0tBQ0YsQ0FBQyxDQUFDLENBQUM7R0FDVCxDQUFDLENBQUM7Q0FFSixDQUFDLENBQUMiLCJmaWxlIjoiL1VzZXJzL3poYW5neGlhb3RpYW4vLmF0b20vcGFja2FnZXMvbnVjbGlkZS1kZWJ1Z2dlci1oaHZtL3NwZWMvQ2hyb21lTWVzc2FnZVJlbW90aW5nLXNwZWMuanMiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIGJhYmVsJztcbi8qIEBmbG93ICovXG5cbi8qXG4gKiBDb3B5cmlnaHQgKGMpIDIwMTUtcHJlc2VudCwgRmFjZWJvb2ssIEluYy5cbiAqIEFsbCByaWdodHMgcmVzZXJ2ZWQuXG4gKlxuICogVGhpcyBzb3VyY2UgY29kZSBpcyBsaWNlbnNlZCB1bmRlciB0aGUgbGljZW5zZSBmb3VuZCBpbiB0aGUgTElDRU5TRSBmaWxlIGluXG4gKiB0aGUgcm9vdCBkaXJlY3Rvcnkgb2YgdGhpcyBzb3VyY2UgdHJlZS5cbiAqL1xuXG5cbmNvbnN0IHt0cmFuc2xhdGVNZXNzYWdlRnJvbVNlcnZlciwgdHJhbnNsYXRlTWVzc2FnZVRvU2VydmVyfSA9IHJlcXVpcmUoJy4uL2xpYi9DaHJvbWVNZXNzYWdlUmVtb3RpbmcnKTtcblxuZGVzY3JpYmUoJ2RlYnVnZ2VyLWhodm0gQ2hyb21lTWVzc2FnZVJlbW90aW5nJywgKCkgPT4ge1xuXG4gIGl0KCd0cmFuc2xhdGVNZXNzYWdlRnJvbVNlcnZlcicsICgpID0+IHtcbiAgICBleHBlY3QodHJhbnNsYXRlTWVzc2FnZUZyb21TZXJ2ZXIoXG4gICAgICAgICdteWhvc3QnLFxuICAgICAgICA4MDgwLFxuICAgICAgICBKU09OLnN0cmluZ2lmeSh7XG4gICAgICAgICAgbWV0aG9kOiAnRGVidWdnZXIuc2NyaXB0UGFyc2VkJyxcbiAgICAgICAgICBwYXJhbXM6IHtcbiAgICAgICAgICAgIHNjcmlwdElkOiAnL2hvbWUvdGVzdC5waHAnLFxuICAgICAgICAgICAgdXJsOiAnZmlsZTovLy9ob21lL3Rlc3QucGhwJyxcbiAgICAgICAgICAgIHN0YXJ0TGluZTowLFxuICAgICAgICAgICAgc3RhcnRDb2x1bW46MCxcbiAgICAgICAgICAgIGVuZExpbmU6MCxcbiAgICAgICAgICAgIGVuZENvbHVtbjowLFxuICAgICAgICAgIH0sXG4gICAgICAgIH0pKSkudG9CZShKU09OLnN0cmluZ2lmeSh7XG4gICAgICAgICAgbWV0aG9kOiAnRGVidWdnZXIuc2NyaXB0UGFyc2VkJyxcbiAgICAgICAgICBwYXJhbXM6IHtcbiAgICAgICAgICAgIHNjcmlwdElkOiAnL2hvbWUvdGVzdC5waHAnLFxuICAgICAgICAgICAgdXJsOiAnbnVjbGlkZTovL215aG9zdDo4MDgwL2hvbWUvdGVzdC5waHAnLFxuICAgICAgICAgICAgc3RhcnRMaW5lOjAsXG4gICAgICAgICAgICBzdGFydENvbHVtbjowLFxuICAgICAgICAgICAgZW5kTGluZTowLFxuICAgICAgICAgICAgZW5kQ29sdW1uOjAsXG4gICAgICAgICAgfSxcbiAgICAgICAgfSkpO1xuICB9KTtcblxuICBpdCgndHJhbnNsYXRlTWVzc2FnZUZyb21TZXJ2ZXIgd2l0aCBzcGFjZScsICgpID0+IHtcbiAgICBleHBlY3QodHJhbnNsYXRlTWVzc2FnZUZyb21TZXJ2ZXIoXG4gICAgICAgICdteWhvc3QnLFxuICAgICAgICA4MDgwLFxuICAgICAgICBKU09OLnN0cmluZ2lmeSh7XG4gICAgICAgICAgbWV0aG9kOiAnRGVidWdnZXIuc2NyaXB0UGFyc2VkJyxcbiAgICAgICAgICBwYXJhbXM6IHtcbiAgICAgICAgICAgIHNjcmlwdElkOiAnL2hvbWUvdGUgc3QucGhwJyxcbiAgICAgICAgICAgIHVybDogJ2ZpbGU6Ly8vaG9tZS90ZSBzdC5waHAnLFxuICAgICAgICAgICAgc3RhcnRMaW5lOjAsXG4gICAgICAgICAgICBzdGFydENvbHVtbjowLFxuICAgICAgICAgICAgZW5kTGluZTowLFxuICAgICAgICAgICAgZW5kQ29sdW1uOjAsXG4gICAgICAgICAgfSxcbiAgICAgICAgfSkpKS50b0JlKEpTT04uc3RyaW5naWZ5KHtcbiAgICAgICAgICBtZXRob2Q6ICdEZWJ1Z2dlci5zY3JpcHRQYXJzZWQnLFxuICAgICAgICAgIHBhcmFtczoge1xuICAgICAgICAgICAgc2NyaXB0SWQ6ICcvaG9tZS90ZSBzdC5waHAnLFxuICAgICAgICAgICAgdXJsOiAnbnVjbGlkZTovL215aG9zdDo4MDgwL2hvbWUvdGUgc3QucGhwJyxcbiAgICAgICAgICAgIHN0YXJ0TGluZTowLFxuICAgICAgICAgICAgc3RhcnRDb2x1bW46MCxcbiAgICAgICAgICAgIGVuZExpbmU6MCxcbiAgICAgICAgICAgIGVuZENvbHVtbjowLFxuICAgICAgICAgIH0sXG4gICAgICAgIH0pKTtcbiAgfSk7XG5cbiAgaXQoJ3RyYW5zbGF0ZU1lc3NhZ2VUb1NlcnZlcicsICgpID0+IHtcbiAgICBleHBlY3QodHJhbnNsYXRlTWVzc2FnZVRvU2VydmVyKFxuICAgICAgICBKU09OLnN0cmluZ2lmeSh7XG4gICAgICAgICAgbWV0aG9kOiAnRGVidWdnZXIuc2V0QnJlYWtwb2ludEJ5VXJsJyxcbiAgICAgICAgICBwYXJhbXM6IHtcbiAgICAgICAgICAgIGxpbmVOdW1iZXI6IDMsXG4gICAgICAgICAgICB1cmw6ICdudWNsaWRlOi8vbXlob3N0OjgwODAvaG9tZS90ZXN0LnBocCcsXG4gICAgICAgICAgICBjb2x1bW5OdW1iZXI6IDAsXG4gICAgICAgICAgICBjb25kaXRpb246ICcnLFxuICAgICAgICAgIH0sXG4gICAgICAgIH0pKSkudG9CZShKU09OLnN0cmluZ2lmeSh7XG4gICAgICAgICAgbWV0aG9kOiAnRGVidWdnZXIuc2V0QnJlYWtwb2ludEJ5VXJsJyxcbiAgICAgICAgICBwYXJhbXM6IHtcbiAgICAgICAgICAgIGxpbmVOdW1iZXI6IDMsXG4gICAgICAgICAgICB1cmw6ICdmaWxlOi8vL2hvbWUvdGVzdC5waHAnLFxuICAgICAgICAgICAgY29sdW1uTnVtYmVyOiAwLFxuICAgICAgICAgICAgY29uZGl0aW9uOiAnJyxcbiAgICAgICAgICB9LFxuICAgICAgICB9KSk7XG4gIH0pO1xuXG59KTtcbiJdfQ==
+//# sourceURL=/Users/zhangxiaotian/.atom/packages/nuclide-debugger-hhvm/spec/ChromeMessageRemoting-spec.js

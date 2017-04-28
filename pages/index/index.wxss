@@ -1,0 +1,5 @@
+/**index.wxss**/
+.index-list-img image{
+   width: 750rpx;
+   height: 350rpx; 
+}

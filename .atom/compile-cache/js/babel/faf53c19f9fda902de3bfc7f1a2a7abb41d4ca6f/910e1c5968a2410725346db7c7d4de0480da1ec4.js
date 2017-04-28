@@ -1,0 +1,60 @@
+'use babel';
+
+/*
+ * Copyright (c) 2015-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the LICENSE file in
+ * the root directory of this source tree.
+ */
+var RelatedFileFinder = require('../lib/RelatedFileFinder');
+
+describe('RelatedFileFinder', function () {
+
+  describe('@find', function () {
+    it('finds related file with a different extension', function () {
+      var fs = require('fs');
+      spyOn(fs, 'readdirSync').andReturn(['Test.h', 'Test.m']);
+      var relatedFileFinder = new RelatedFileFinder();
+
+      expect(relatedFileFinder.find('dir/Test.m')).toEqual({
+        relatedFiles: ['dir/Test.h', 'dir/Test.m'],
+        index: 1
+      });
+    });
+
+    it('finds related file whose name ends with `Internal`', function () {
+      var fs = require('fs');
+      spyOn(fs, 'readdirSync').andReturn(['TestInternal.h', 'Test.m']);
+      var relatedFileFinder = new RelatedFileFinder();
+
+      expect(relatedFileFinder.find('dir/Test.m')).toEqual({
+        relatedFiles: ['dir/Test.m', 'dir/TestInternal.h'],
+        index: 0
+      });
+    });
+
+    it('does not find related file whose name starts with `Internal`', function () {
+      var fs = require('fs');
+      spyOn(fs, 'readdirSync').andReturn(['InternalTest.h', 'Test.m']);
+      var relatedFileFinder = new RelatedFileFinder();
+
+      expect(relatedFileFinder.find('dir/Test.m')).toEqual({
+        relatedFiles: ['dir/Test.m'],
+        index: 0
+      });
+    });
+
+    it('throws an error if given path is not in `relatedFiles`', function () {
+      var fs = require('fs');
+      spyOn(fs, 'readdirSync').andReturn([]);
+      var relatedFileFinder = new RelatedFileFinder();
+
+      expect(function () {
+        return relatedFileFinder.find('dir/Test.m');
+      }).toThrow(new Error('Given path must be in `relatedFiles`: dir/Test.m'));
+    });
+  });
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy96aGFuZ3hpYW90aWFuLy5hdG9tL3BhY2thZ2VzL251Y2xpZGUtY2xhbmctYXRvbS9zcGVjL1JlbGF0ZWRGaWxlRmluZGVyLXNwZWMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsV0FBVyxDQUFDOzs7Ozs7Ozs7QUFVWixJQUFNLGlCQUFpQixHQUFHLE9BQU8sQ0FBQywwQkFBMEIsQ0FBQyxDQUFDOztBQUU5RCxRQUFRLENBQUMsbUJBQW1CLEVBQUUsWUFBTTs7QUFFbEMsVUFBUSxDQUFDLE9BQU8sRUFBRSxZQUFNO0FBQ3RCLE1BQUUsQ0FBQywrQ0FBK0MsRUFBRSxZQUFNO0FBQ3hELFVBQU0sRUFBRSxHQUFHLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztBQUN6QixXQUFLLENBQUMsRUFBRSxFQUFFLGFBQWEsQ0FBQyxDQUFDLFNBQVMsQ0FBQyxDQUNqQyxRQUFRLEVBQ1IsUUFBUSxDQUNULENBQUMsQ0FBQztBQUNILFVBQU0saUJBQWlCLEdBQUcsSUFBSSxpQkFBaUIsRUFBRSxDQUFDOztBQUVsRCxZQUFNLENBQUMsaUJBQWlCLENBQUMsSUFBSSxDQUFDLFlBQVksQ0FBQyxDQUFDLENBQUMsT0FBTyxDQUFDO0FBQ25ELG9CQUFZLEVBQUUsQ0FBQyxZQUFZLEVBQUUsWUFBWSxDQUFDO0FBQzFDLGFBQUssRUFBRSxDQUFDO09BQ1QsQ0FBQyxDQUFDO0tBQ0osQ0FBQyxDQUFDOztBQUVILE1BQUUsQ0FBQyxvREFBb0QsRUFBRSxZQUFNO0FBQzdELFVBQU0sRUFBRSxHQUFHLE9BQU8sQ0FBQyxJQUFJLENBQUMsQ0FBQztBQUN6QixXQUFLLENBQUMsRUFBRSxFQUFFLGFBQWEsQ0FBQyxDQUFDLFNBQVMsQ0FBQyxDQUNqQyxnQkFBZ0IsRUFDaEIsUUFBUSxDQUNULENBQUMsQ0FBQztBQUNILFVBQU0saUJBQWlCLEdBQUcsSUFBSSxpQkFBaUIsRUFBRSxDQUFDOztBQUVsRCxZQUFNLENBQUMsaUJBQWlCLENBQUMsSUFBSSxDQUFDLFlBQVksQ0FBQyxDQUFDLENBQUMsT0FBTyxDQUFDO0FBQ25ELG9CQUFZLEVBQUUsQ0FBQyxZQUFZLEVBQUUsb0JBQW9CLENBQUM7QUFDbEQsYUFBSyxFQUFFLENBQUM7T0FDVCxDQUFDLENBQUM7S0FDSixDQUFDLENBQUM7O0FBRUgsTUFBRSxDQUFDLDhEQUE4RCxFQUFFLFlBQU07QUFDdkUsVUFBTSxFQUFFLEdBQUcsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO0FBQ3pCLFdBQUssQ0FBQyxFQUFFLEVBQUUsYUFBYSxDQUFDLENBQUMsU0FBUyxDQUFDLENBQ2pDLGdCQUFnQixFQUNoQixRQUFRLENBQ1QsQ0FBQyxDQUFDO0FBQ0gsVUFBTSxpQkFBaUIsR0FBRyxJQUFJLGlCQUFpQixFQUFFLENBQUM7O0FBRWxELFlBQU0sQ0FBQyxpQkFBaUIsQ0FBQyxJQUFJLENBQUMsWUFBWSxDQUFDLENBQUMsQ0FBQyxPQUFPLENBQUM7QUFDbkQsb0JBQVksRUFBRSxDQUFDLFlBQVksQ0FBQztBQUM1QixhQUFLLEVBQUUsQ0FBQztPQUNULENBQUMsQ0FBQztLQUNKLENBQUMsQ0FBQzs7QUFFSCxNQUFFLENBQUMsd0RBQXdELEVBQUUsWUFBTTtBQUNqRSxVQUFNLEVBQUUsR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDLENBQUM7QUFDekIsV0FBSyxDQUFDLEVBQUUsRUFBRSxhQUFhLENBQUMsQ0FBQyxTQUFTLENBQUMsRUFBRSxDQUFDLENBQUM7QUFDdkMsVUFBTSxpQkFBaUIsR0FBRyxJQUFJLGlCQUFpQixFQUFFLENBQUM7O0FBRWxELFlBQU0sQ0FBQztlQUFNLGlCQUFpQixDQUFDLElBQUksQ0FBQyxZQUFZLENBQUM7T0FBQSxDQUFDLENBQzdDLE9BQU8sQ0FBQyxJQUFJLEtBQUssQ0FBQyxrREFBa0QsQ0FBQyxDQUFDLENBQUM7S0FDN0UsQ0FBQyxDQUFDO0dBQ0osQ0FBQyxDQUFDO0NBRUosQ0FBQyxDQUFDIiwiZmlsZSI6Ii9Vc2Vycy96aGFuZ3hpYW90aWFuLy5hdG9tL3BhY2thZ2VzL251Y2xpZGUtY2xhbmctYXRvbS9zcGVjL1JlbGF0ZWRGaWxlRmluZGVyLXNwZWMuanMiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIGJhYmVsJztcbi8qIEBmbG93ICovXG5cbi8qXG4gKiBDb3B5cmlnaHQgKGMpIDIwMTUtcHJlc2VudCwgRmFjZWJvb2ssIEluYy5cbiAqIEFsbCByaWdodHMgcmVzZXJ2ZWQuXG4gKlxuICogVGhpcyBzb3VyY2UgY29kZSBpcyBsaWNlbnNlZCB1bmRlciB0aGUgbGljZW5zZSBmb3VuZCBpbiB0aGUgTElDRU5TRSBmaWxlIGluXG4gKiB0aGUgcm9vdCBkaXJlY3Rvcnkgb2YgdGhpcyBzb3VyY2UgdHJlZS5cbiAqL1xuY29uc3QgUmVsYXRlZEZpbGVGaW5kZXIgPSByZXF1aXJlKCcuLi9saWIvUmVsYXRlZEZpbGVGaW5kZXInKTtcblxuZGVzY3JpYmUoJ1JlbGF0ZWRGaWxlRmluZGVyJywgKCkgPT4ge1xuXG4gIGRlc2NyaWJlKCdAZmluZCcsICgpID0+IHtcbiAgICBpdCgnZmluZHMgcmVsYXRlZCBmaWxlIHdpdGggYSBkaWZmZXJlbnQgZXh0ZW5zaW9uJywgKCkgPT4ge1xuICAgICAgY29uc3QgZnMgPSByZXF1aXJlKCdmcycpO1xuICAgICAgc3B5T24oZnMsICdyZWFkZGlyU3luYycpLmFuZFJldHVybihbXG4gICAgICAgICdUZXN0LmgnLFxuICAgICAgICAnVGVzdC5tJyxcbiAgICAgIF0pO1xuICAgICAgY29uc3QgcmVsYXRlZEZpbGVGaW5kZXIgPSBuZXcgUmVsYXRlZEZpbGVGaW5kZXIoKTtcblxuICAgICAgZXhwZWN0KHJlbGF0ZWRGaWxlRmluZGVyLmZpbmQoJ2Rpci9UZXN0Lm0nKSkudG9FcXVhbCh7XG4gICAgICAgIHJlbGF0ZWRGaWxlczogWydkaXIvVGVzdC5oJywgJ2Rpci9UZXN0Lm0nXSxcbiAgICAgICAgaW5kZXg6IDEsXG4gICAgICB9KTtcbiAgICB9KTtcblxuICAgIGl0KCdmaW5kcyByZWxhdGVkIGZpbGUgd2hvc2UgbmFtZSBlbmRzIHdpdGggYEludGVybmFsYCcsICgpID0+IHtcbiAgICAgIGNvbnN0IGZzID0gcmVxdWlyZSgnZnMnKTtcbiAgICAgIHNweU9uKGZzLCAncmVhZGRpclN5bmMnKS5hbmRSZXR1cm4oW1xuICAgICAgICAnVGVzdEludGVybmFsLmgnLFxuICAgICAgICAnVGVzdC5tJyxcbiAgICAgIF0pO1xuICAgICAgY29uc3QgcmVsYXRlZEZpbGVGaW5kZXIgPSBuZXcgUmVsYXRlZEZpbGVGaW5kZXIoKTtcblxuICAgICAgZXhwZWN0KHJlbGF0ZWRGaWxlRmluZGVyLmZpbmQoJ2Rpci9UZXN0Lm0nKSkudG9FcXVhbCh7XG4gICAgICAgIHJlbGF0ZWRGaWxlczogWydkaXIvVGVzdC5tJywgJ2Rpci9UZXN0SW50ZXJuYWwuaCddLFxuICAgICAgICBpbmRleDogMCxcbiAgICAgIH0pO1xuICAgIH0pO1xuXG4gICAgaXQoJ2RvZXMgbm90IGZpbmQgcmVsYXRlZCBmaWxlIHdob3NlIG5hbWUgc3RhcnRzIHdpdGggYEludGVybmFsYCcsICgpID0+IHtcbiAgICAgIGNvbnN0IGZzID0gcmVxdWlyZSgnZnMnKTtcbiAgICAgIHNweU9uKGZzLCAncmVhZGRpclN5bmMnKS5hbmRSZXR1cm4oW1xuICAgICAgICAnSW50ZXJuYWxUZXN0LmgnLFxuICAgICAgICAnVGVzdC5tJyxcbiAgICAgIF0pO1xuICAgICAgY29uc3QgcmVsYXRlZEZpbGVGaW5kZXIgPSBuZXcgUmVsYXRlZEZpbGVGaW5kZXIoKTtcblxuICAgICAgZXhwZWN0KHJlbGF0ZWRGaWxlRmluZGVyLmZpbmQoJ2Rpci9UZXN0Lm0nKSkudG9FcXVhbCh7XG4gICAgICAgIHJlbGF0ZWRGaWxlczogWydkaXIvVGVzdC5tJ10sXG4gICAgICAgIGluZGV4OiAwLFxuICAgICAgfSk7XG4gICAgfSk7XG5cbiAgICBpdCgndGhyb3dzIGFuIGVycm9yIGlmIGdpdmVuIHBhdGggaXMgbm90IGluIGByZWxhdGVkRmlsZXNgJywgKCkgPT4ge1xuICAgICAgY29uc3QgZnMgPSByZXF1aXJlKCdmcycpO1xuICAgICAgc3B5T24oZnMsICdyZWFkZGlyU3luYycpLmFuZFJldHVybihbXSk7XG4gICAgICBjb25zdCByZWxhdGVkRmlsZUZpbmRlciA9IG5ldyBSZWxhdGVkRmlsZUZpbmRlcigpO1xuXG4gICAgICBleHBlY3QoKCkgPT4gcmVsYXRlZEZpbGVGaW5kZXIuZmluZCgnZGlyL1Rlc3QubScpKVxuICAgICAgICAgIC50b1Rocm93KG5ldyBFcnJvcignR2l2ZW4gcGF0aCBtdXN0IGJlIGluIGByZWxhdGVkRmlsZXNgOiBkaXIvVGVzdC5tJykpO1xuICAgIH0pO1xuICB9KTtcblxufSk7XG4iXX0=
+//# sourceURL=/Users/zhangxiaotian/.atom/packages/nuclide-clang-atom/spec/RelatedFileFinder-spec.js

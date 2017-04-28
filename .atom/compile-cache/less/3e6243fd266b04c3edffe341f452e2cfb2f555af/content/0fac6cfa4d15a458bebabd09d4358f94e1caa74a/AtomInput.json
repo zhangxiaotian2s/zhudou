@@ -1,0 +1,1 @@
+{"digest":"52a8792ab3c30a55b7140a3ef584e824e895cc2a","css":"/*\n * Use element + class selectors, as opposed to just the class selector, to match the specificity of\n * `atom-text-editor[mini]`.\n */\natom-text-editor[mini].atom-text-editor-sm {\n  font-size: 0.9em;\n  line-height: 2em;\n}\n","imports":[],"version":1}

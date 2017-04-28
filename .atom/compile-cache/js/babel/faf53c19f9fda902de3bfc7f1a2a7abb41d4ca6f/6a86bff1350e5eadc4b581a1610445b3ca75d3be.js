@@ -1,0 +1,29 @@
+'use babel';
+
+/*
+ * Copyright (c) 2015-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the LICENSE file in
+ * the root directory of this source tree.
+ */
+
+var TestRunModel = require('../lib/TestRunModel');
+
+var TestRunStatus = TestRunModel.Status;
+
+describe('TestRunModel', function () {
+
+  describe('formatStatusMessage', function () {
+
+    it('prints pretty pass message', function () {
+      expect(TestRunModel.formatStatusMessage('Foo', 1.2, TestRunStatus.PASSED)).toEqual('      \u001b[32m✓\u001b[39m Foo 1.200s \u001b[32m(PASS)\u001b[39m');
+    });
+
+    it('prints pretty fail message', function () {
+      expect(TestRunModel.formatStatusMessage('Bar', 2.22555, TestRunStatus.FAILED)).toEqual('      \u001b[31m✗\u001b[39m Bar 2.226s \u001b[31m(FAIL)\u001b[39m');
+    });
+  });
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy96aGFuZ3hpYW90aWFuLy5hdG9tL3BhY2thZ2VzL251Y2xpZGUtdGVzdC1ydW5uZXIvc3BlYy9UZXN0UnVuTW9kZWwtc3BlYy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxXQUFXLENBQUM7Ozs7Ozs7Ozs7QUFXWixJQUFNLFlBQVksR0FBRyxPQUFPLENBQUMscUJBQXFCLENBQUMsQ0FBQzs7QUFFcEQsSUFBTSxhQUFhLEdBQUcsWUFBWSxDQUFDLE1BQU0sQ0FBQzs7QUFFMUMsUUFBUSxDQUFDLGNBQWMsRUFBRSxZQUFNOztBQUU3QixVQUFRLENBQUMscUJBQXFCLEVBQUUsWUFBTTs7QUFFcEMsTUFBRSxDQUFDLDRCQUE0QixFQUFFLFlBQU07QUFDckMsWUFBTSxDQUFDLFlBQVksQ0FBQyxtQkFBbUIsQ0FBQyxLQUFLLEVBQUUsR0FBRyxFQUFFLGFBQWEsQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUN2RSxPQUFPLENBQUMsbUVBQW1FLENBQUMsQ0FBQztLQUNqRixDQUFDLENBQUM7O0FBRUgsTUFBRSxDQUFDLDRCQUE0QixFQUFFLFlBQU07QUFDckMsWUFBTSxDQUFDLFlBQVksQ0FBQyxtQkFBbUIsQ0FBQyxLQUFLLEVBQUUsT0FBTyxFQUFFLGFBQWEsQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUMzRSxPQUFPLENBQUMsbUVBQW1FLENBQUMsQ0FBQztLQUNqRixDQUFDLENBQUM7R0FFSixDQUFDLENBQUM7Q0FFSixDQUFDLENBQUMiLCJmaWxlIjoiL1VzZXJzL3poYW5neGlhb3RpYW4vLmF0b20vcGFja2FnZXMvbnVjbGlkZS10ZXN0LXJ1bm5lci9zcGVjL1Rlc3RSdW5Nb2RlbC1zcGVjLmpzIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBiYWJlbCc7XG4vKiBAZmxvdyAqL1xuXG4vKlxuICogQ29weXJpZ2h0IChjKSAyMDE1LXByZXNlbnQsIEZhY2Vib29rLCBJbmMuXG4gKiBBbGwgcmlnaHRzIHJlc2VydmVkLlxuICpcbiAqIFRoaXMgc291cmNlIGNvZGUgaXMgbGljZW5zZWQgdW5kZXIgdGhlIGxpY2Vuc2UgZm91bmQgaW4gdGhlIExJQ0VOU0UgZmlsZSBpblxuICogdGhlIHJvb3QgZGlyZWN0b3J5IG9mIHRoaXMgc291cmNlIHRyZWUuXG4gKi9cblxuY29uc3QgVGVzdFJ1bk1vZGVsID0gcmVxdWlyZSgnLi4vbGliL1Rlc3RSdW5Nb2RlbCcpO1xuXG5jb25zdCBUZXN0UnVuU3RhdHVzID0gVGVzdFJ1bk1vZGVsLlN0YXR1cztcblxuZGVzY3JpYmUoJ1Rlc3RSdW5Nb2RlbCcsICgpID0+IHtcblxuICBkZXNjcmliZSgnZm9ybWF0U3RhdHVzTWVzc2FnZScsICgpID0+IHtcblxuICAgIGl0KCdwcmludHMgcHJldHR5IHBhc3MgbWVzc2FnZScsICgpID0+IHtcbiAgICAgIGV4cGVjdChUZXN0UnVuTW9kZWwuZm9ybWF0U3RhdHVzTWVzc2FnZSgnRm9vJywgMS4yLCBUZXN0UnVuU3RhdHVzLlBBU1NFRCkpXG4gICAgICAgIC50b0VxdWFsKCcgICAgICBcXHUwMDFCWzMybeKck1xcdTAwMUJbMzltIEZvbyAxLjIwMHMgXFx1MDAxQlszMm0oUEFTUylcXHUwMDFCWzM5bScpO1xuICAgIH0pO1xuXG4gICAgaXQoJ3ByaW50cyBwcmV0dHkgZmFpbCBtZXNzYWdlJywgKCkgPT4ge1xuICAgICAgZXhwZWN0KFRlc3RSdW5Nb2RlbC5mb3JtYXRTdGF0dXNNZXNzYWdlKCdCYXInLCAyLjIyNTU1LCBUZXN0UnVuU3RhdHVzLkZBSUxFRCkpXG4gICAgICAgIC50b0VxdWFsKCcgICAgICBcXHUwMDFCWzMxbeKcl1xcdTAwMUJbMzltIEJhciAyLjIyNnMgXFx1MDAxQlszMW0oRkFJTClcXHUwMDFCWzM5bScpO1xuICAgIH0pO1xuXG4gIH0pO1xuXG59KTtcbiJdfQ==
+//# sourceURL=/Users/zhangxiaotian/.atom/packages/nuclide-test-runner/spec/TestRunModel-spec.js
