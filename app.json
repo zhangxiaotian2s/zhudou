@@ -1,32 +1,36 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/artical/index",
+    "pages/question/index",
+    "pages/questionlist/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "猪兜",
+    "navigationBarTextStyle": "white"
   },
-    "tabBar": {
-    "selectedColor": "#cc0000",
-    "backgroundColor":"#f7f7fa",
+  "tabBar": {
+    "backgroundColor": "#f7f6fb",
+    "selectedColor": "#cc0907",
     "list": [
-     
       {
         "pagePath": "pages/index/index",
         "iconPath": "assets/images/icon-news.jpg",
         "selectedIconPath": "assets/images/icon-news-selected.jpg",
         "text": "杂志"
       },
-       {
-        "pagePath": "pages/index/index",
+      {
+        "pagePath": "pages/question/index",
         "iconPath": "assets/images/icon-technique.jpg",
         "selectedIconPath": "assets/images/icon-technique-selected.jpg",
         "text": "问答"
       }
-      
     ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
   }
 }

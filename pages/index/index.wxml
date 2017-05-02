@@ -1,16 +1,74 @@
+
 <!--index.wxml-->
 <view class="container">
-
-   <view class="index-list">
-     <view class="classname">
-       <image src="http://op44q48dy.bkt.clouddn.com/zhu.jpg"></image>
-     </view>
-     <view class="title">
-       <text>养猪小能手黑猪肉50元一斤你说值不值养猪小能手黑猪肉50元一斤你说值不值？</text>
-     </view>
-     <view class="time">
-       <text>2017-04-28</text>
-     </view>
-   </view>
-
+  <navigator url="/pages/artical/index?id=1"  hover-class="navigator-hover">
+    <view class="index-list">
+      <view class="img">
+        <image src="http://op44q48dy.bkt.clouddn.com/zhu.jpg"></image>
+      </view>
+      <view class="title">
+        <text> 黑猪大黑猪黑猪大黑猪黑猪大猪</text>
+      </view>
+      <view class="summary">
+        <text>黑猪大黑猪黑猪大黑猪黑猪大黑猪黑大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪</text>
+      </view>
+      <view class="time">2016-10-11</view>
+    </view>
+  </navigator>
+ <navigator url="/pages/artical/index?id=2" hover-class="navigator-hover">
+    <view class="index-list">
+      <view class="img">
+        <image src="http://op44q48dy.bkt.clouddn.com/zhu.jpg"></image>
+      </view>
+      <view class="title">
+        <text> 黑猪大黑猪黑猪大黑猪黑猪大猪</text>
+      </view>
+      <view class="summary">
+        <text>黑猪大黑猪黑猪大黑猪黑猪大黑猪黑黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪</text>
+      </view>
+      <view class="time">2016-10-11</view>
+    </view>
+  </navigator>
+  <navigator url="/pages/artical/index?id=3" hover-class="navigator-hover">
+    <view class="index-list">
+      <view class="img">
+        <image src="http://op44q48dy.bkt.clouddn.com/zhu.jpg"></image>
+      </view>
+      <view class="title">
+        <text> 黑猪大黑猪黑猪大黑猪黑猪大猪</text>
+      </view>
+      <view class="summary">
+        <text>黑猪大黑猪黑猪大黑猪黑猪大黑猪黑黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪</text>
+      </view>
+      <view class="time">2016-10-11</view>
+    </view>
+  </navigator>
+ <navigator url="/pages/artical/index?id=4" hover-class="navigator-hover">
+    <view class="index-list">
+      <view class="img">
+        <image src="http://op44q48dy.bkt.clouddn.com/zhu.jpg"></image>
+      </view>
+      <view class="title">
+        <text> 黑猪大黑猪黑猪大黑猪黑猪大猪</text>
+      </view>
+      <view class="summary">
+        <text>黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪猪黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪</text>
+      </view>
+      <view class="time">2016-10-11</view>
+    </view>
+  </navigator>
+ <navigator url="/pages/artical/index?id=1" hover-class="navigator-hover">
+    <view class="index-list">
+      <view class="img">
+        <image src="http://op44q48dy.bkt.clouddn.com/zhu.jpg"></image>
+      </view>
+      <view class="title">
+        <text> 黑猪大黑猪黑猪大黑猪黑猪大猪</text>
+      </view>
+      <view class="summary">
+        <text>黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪黑猪大黑猪</text>
+      </view>
+      <view class="time">2016-10-11</view>
+    </view>
+  </navigator>
 </view>

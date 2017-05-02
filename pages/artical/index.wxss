@@ -1,0 +1,19 @@
+/* pages/artical/index.wxss */
+
+.head-img image {
+  width: 750rpx;
+  height: 350rpx;
+}
+
+.title {
+  width: 710rpx;
+  padding:30rpx 20rpx;
+  font-size: 42rpx;
+  line-height: 48rpx;
+  text-align: center;
+}
+.content{
+    width:710rpx;
+    padding:20rpx;
+    font-size: 30rpx;
+}

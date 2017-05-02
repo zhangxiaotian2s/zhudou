@@ -1,0 +1,64 @@
+
+<!--pages/question/index.wxml-->
+<view class="container">
+  <view class="weui-navbar clearfix">
+    <view id="" class="weui-navbar__item first-navbar-item">
+     <navigator url="/pages/questionlist/index" hover-class="none">
+      <view class="weui-navbar__title ">最新问题</view>
+      </navigator>
+    </view>
+    <view id="" class="weui-navbar__item ">
+    <navigator url="/pages/questionlist/index" hover-class="none">
+      <view class="weui-navbar__title">悬赏问题</view>
+       </navigator>
+    </view>
+  </view>
+  <view class="ask-box">
+    <view class="free ask">
+      <view class="title">
+        <text>免费提问</text>
+      </view>
+      <view class="des">
+        <text>十分钟内回复</text>
+      </view>
+    </view>
+    <view class="money ask">
+      <view class="title">
+        <text>悬赏提问</text>
+      </view>
+      <view class="des">
+        <text>兽医/专家一对一</text>
+      </view>
+    </view>
+  </view>
+  <view class="hot-question-list">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-panel">
+        <view class="weui-panel__hd h-title">热门提问</view>
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">黑猪的产后护理注意事项</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">2017-10-11</view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">21回复</view>
+            </view>
+          </view>
+           <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">黑猪的产后护理注意事项</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">2017-10-11</view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">21回复</view>
+            </view>
+          </view>
+           <view class="weui-media-box weui-media-box_text">
+            <view class="weui-media-box__title weui-media-box__title_in-text">黑猪的产后护理注意事项</view>
+            <view class="weui-media-box__info">
+              <view class="weui-media-box__info__meta">2017-10-11</view>
+              <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">21回复</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

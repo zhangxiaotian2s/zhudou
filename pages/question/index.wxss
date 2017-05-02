@@ -1,0 +1,46 @@
+/* pages/question/index.wxss */
+.weui-navbar{
+    position:relative;
+}
+.first-navbar-item{
+     border-right: #cccccc solid 1px;
+}
+.first-navbar-item .current{
+     color: #ff0808;
+}
+.ask-box{
+     width:750rpx;
+     padding: 50rpx 0rpx;
+     display: flex;
+     flex-direction: row;
+     justify-content: space-around; 
+}
+.ask-box .ask{
+    padding:20rpx 0rpx;
+     width: 300rpx;
+     text-align: center;
+     border-radius: 5rpx;
+     background: #06ca6b;
+}
+.ask-box .ask .title{
+    height: 50rpx;
+    line-height:100rpx;
+    height: 100rpx;
+    font-size: 42rpx;
+    color: #ffffff;
+}
+.ask-box .ask .des{
+  font-size: 30rpx;
+  line-height: 36rpx;
+  color: #ffffff;
+}
+.ask-box .money{
+    background: #ff3232;
+}
+.h-title{
+    font-size: 30rpx;
+    color: #000000;
+}
+.hot-question-list{
+    width: 750rpx;
+}

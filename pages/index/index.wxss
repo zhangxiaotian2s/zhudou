@@ -1,5 +1,40 @@
 /**index.wxss**/
-.index-list-img image{
-   width: 750rpx;
-   height: 350rpx; 
+
+.index-list {
+  width: 750rpx;
+  padding-bottom: 20rpx;
+}
+
+.index-list .img image {
+  width: 750rpx;
+  height: 350rpx;
+}
+
+.title {
+  width: 710rpx;
+  padding: 30rpx 20rpx 10rpx;
+  text-align: center;
+}
+
+.title text {
+  font-size: 42rpx;
+  color: #000;
+  text-align: center;
+}
+
+.summary {
+  width: 710rpx;
+  padding: 0px 20px;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: #999999;
+  text-align: center;
+}
+
+.time{
+  width: 710rpx;
+  text-align: right;
+  padding: 0rpx 20rpx;
+  font-size: 24rpx;
+  color: #999999;
 }

@@ -1,0 +1,6 @@
+/* pages/questionlist/index.wxss */
+
+.h-title{
+    font-size: 30rpx;
+    color: #000000;
+}

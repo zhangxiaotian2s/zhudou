@@ -1,1 +1,7 @@
-{}
+{
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "杂志",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
+}
